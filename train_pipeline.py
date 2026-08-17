@@ -19,7 +19,11 @@ import time
 import numpy as np
 
 # Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+_FILE_DIR = os.path.dirname(os.path.abspath(__file__))
+if _FILE_DIR not in sys.path:
+    sys.path.insert(0, _FILE_DIR)
+if os.getcwd() not in sys.path:
+    sys.path.insert(0, os.getcwd())
 
 from src.data_loader import load_data
 from src.preprocessing import preprocess

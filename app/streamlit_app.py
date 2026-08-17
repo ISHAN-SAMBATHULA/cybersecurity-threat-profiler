@@ -18,8 +18,11 @@ import sys
 
 # Add project root to path
 _APP_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.join(_APP_DIR, '..')
-sys.path.insert(0, PROJECT_ROOT)
+PROJECT_ROOT = os.path.abspath(os.path.join(_APP_DIR, '..'))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+if os.getcwd() not in sys.path:
+    sys.path.insert(0, os.getcwd())
 
 from src.preprocessing import CATEGORICAL_COLS, ATTACK_CATEGORIES
 from src.threat_profiler import load_models, profile_threat
